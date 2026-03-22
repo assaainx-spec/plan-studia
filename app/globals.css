@@ -13,3 +13,17 @@ input[type="date"] {
   color-scheme: dark;
 }
 
+/* Safe area utilities for iPhone notch / home bar */
+.safe-top    { padding-top:    env(safe-area-inset-top,    0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+.pb-safe {
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px));
+}
+.modal-pb-safe {
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px));
+}
+.header-pt-safe {
+  padding-top: max(1rem, env(safe-area-inset-top, 0px));
+}
+

@@ -277,8 +277,8 @@ export default function PlanStudia() {
   function restoreAll() { setDeletedTpl([]); saveDeleted([]); }
 
   return (
-    <div className="flex flex-col min-h-dvh bg-zinc-950 pb-10">
-      <div className="sticky top-0 z-20 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/60 px-4 py-4 flex items-center justify-between">
+    <div className="flex flex-col min-h-dvh bg-zinc-950 pb-safe">
+      <div className="sticky top-0 z-20 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/60 px-4 py-4 header-pt-safe flex items-center justify-between">
         <div>
           <h1 className="text-base font-bold text-white leading-tight">Plan studiów</h1>
           <p className="text-[11px] text-zinc-500">Psychologia kliniczna · sem. IV · 2026 L</p>
@@ -293,7 +293,7 @@ export default function PlanStudia() {
             className={`text-xs font-medium rounded-xl px-3 py-1.5 border transition-colors ${editMode ? "bg-yellow-400 text-zinc-900 border-yellow-400" : "border-zinc-700 text-zinc-400"}`}>
             {editMode ? "Gotowe" : "Edytuj"}
           </button>
-          <button onClick={() => openAdd()} className="w-8 h-8 rounded-xl bg-yellow-400 text-zinc-900 text-lg font-bold flex items-center justify-center">+</button>
+          <button onClick={() => openAdd()} className="w-11 h-11 rounded-xl bg-yellow-400 text-zinc-900 text-xl font-bold flex items-center justify-center">+</button>
         </div>
       </div>
 
@@ -318,7 +318,7 @@ export default function PlanStudia() {
 
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-end bg-black/70" onClick={() => setShowModal(false)}>
-          <div className="w-full bg-zinc-900 border border-zinc-800 rounded-t-3xl px-5 pt-4 pb-10 flex flex-col gap-4 max-h-[90dvh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="w-full bg-zinc-900 border border-zinc-800 rounded-t-3xl px-5 pt-4 modal-pb-safe flex flex-col gap-4 max-h-[90dvh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="w-10 h-1 bg-zinc-700 rounded-full mx-auto mb-1" />
             <h2 className="text-white font-bold text-lg">{editTarget ? "Edytuj" : "Nowe zajęcia / zadanie"}</h2>
             <Field label="Tytuł *">
@@ -382,7 +382,7 @@ export default function PlanStudia() {
   );
 }
 
-const INPUT = "w-full mt-1 bg-zinc-800 text-white rounded-xl px-4 py-3 text-sm outline-none";
+const INPUT = "w-full mt-1 bg-zinc-800 text-white rounded-xl px-4 py-3 text-base outline-none";
 
 function Field({ label, children, className = "" }: { label: string; children: React.ReactNode; className?: string }) {
   return (
@@ -409,7 +409,7 @@ function SessionBlock({ session, dayMap, today, editMode, onAddDay, onEdit, onDe
       <div className="bg-zinc-900 px-4 py-3 flex items-center justify-between">
         <p className="text-xs font-semibold text-zinc-400">{session.label}{isPast ? " · zakończone" : ""}</p>
         {!isPast && !editMode && (
-          <button onClick={() => onAddDay(session.dates[0])} className="text-yellow-400 text-xs font-medium">+ Dodaj</button>
+          <button onClick={() => onAddDay(session.dates[0])} className="text-yellow-400 text-xs font-medium min-h-[36px] px-2">+ Dodaj</button>
         )}
       </div>
       {session.dates.map((date) => {
@@ -450,11 +450,11 @@ function EventCard({ ev, editMode, onEdit, onDelete }: { ev: ScheduleEvent; edit
         {ev.recurrence.type === "weekly" && <span className="text-[10px] text-zinc-600 mt-0.5 block">↻ Co tydzień</span>}
       </div>
       {editMode && (
-        <div className="flex flex-col gap-1 justify-center shrink-0">
+        <div className="flex flex-col gap-1.5 justify-center shrink-0">
           {!ev.isTemplate && (
-            <button onClick={onEdit} className="text-[10px] text-yellow-400 bg-yellow-400/10 rounded-lg px-2 py-1 font-medium">Edytuj</button>
+            <button onClick={onEdit} className="text-xs text-yellow-400 bg-yellow-400/10 rounded-lg px-3 py-2 font-medium min-h-[36px]">Edytuj</button>
           )}
-          <button onClick={onDelete} className="text-[10px] text-red-400 bg-red-400/10 rounded-lg px-2 py-1 font-medium">Usuń</button>
+          <button onClick={onDelete} className="text-xs text-red-400 bg-red-400/10 rounded-lg px-3 py-2 font-medium min-h-[36px]">Usuń</button>
         </div>
       )}
     </div>
